@@ -4,6 +4,7 @@
 local_cache/*
 *.local
 *visioneering-deeplearning*
+CFA/venv/*
 # extern #
 #########
 extern/
