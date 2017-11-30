@@ -5,6 +5,8 @@ local_cache/*
 *.local
 *visioneering-deeplearning*
 CFA/venv/*
+*.hdf5
+
 # extern #
 #########
 extern/

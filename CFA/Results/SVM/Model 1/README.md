@@ -1,0 +1,1 @@
+Tried with many PCA dimensions, ended on 21. Tried smoothing with different sigmas, results included.
