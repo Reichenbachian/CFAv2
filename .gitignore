@@ -1,9 +1,9 @@
 *.pyc
 *.DS_Store
-venv/*
+*venv/*
 local_cache/*
 *.local
-
+*visioneering-deeplearning*
 # extern #
 #########
 extern/
