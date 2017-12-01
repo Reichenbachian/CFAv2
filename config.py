@@ -1,20 +1,28 @@
+#### System
 import sys
-from experiments.controllers.filters import array_length_ok
-from experiments.controllers.augmentations import identity, add_noise
-from experiments.controllers.processors import smooth_guassian_processor, remove_outliers, amplitude_extractor, subtract_gaussian_filter
-from experiments.controllers.callbacks import LabelHistogram
+import os
+
+### DlFramework
+from dlframework.filters.general_filters import array_length_ok
+from dlframework.augmentations.general_augmentations import identity, add_noise
+from dlframework.augmentations.planet_augmentations import offset, add_linear_trend, split_periods, sum_along_period
+from dlframework.processors.general_processors import smooth_guassian_processor, remove_outliers, amplitude_extractor, subtract_gaussian_filter
+from dlframework.processors.audio_processors import wav_normalize
+from dlframework.keras_extensions.callbacks import ConfusionMatrix, ROCAnalysis
+from dlframework.callbacks.classification_callbacks import LcGraph, precision_per_class, recall_per_class, pred_per_class, LabelHistogram
+
+### Data Manipulation
 import pandas as pd
-from planet_callbacks import LcGraph
-from controllers import offset, add_linear_trend, split_periods, sum_along_period
 import keras
+
+### DL
 from functools import partial
 from keras.callbacks import Callback
 from keras import backend as K
 from keras.optimizers import SGD
 import tensorflow as tf
-import os
-from dlframework.keras_extensions.callbacks import ConfusionMatrix,ROCAnalysis
 from keras.callbacks import EarlyStopping
+from functools import partial
 
 class planet_configuration(object):
     #### Names
@@ -23,12 +31,12 @@ class planet_configuration(object):
 
 
     #### Input
-    input_shape = (1360, 1) #(timestamps, features)
+    input_shape = (1360, 1)
 
     #### Output
     mapped_label_list = ["planet", "other"]
     num_classes = len(mapped_label_list)
-    saving_path = 'LSTM/' + experiment_name
+    saving_path = 'LRCN/' + experiment_name
     model_path = 'models/PlanetDiscriminator.json'
     weights_path= 'models/PlanetDiscriminator.h5'
     
