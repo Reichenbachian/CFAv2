@@ -4,7 +4,7 @@ import os
 
 ### DlFramework
 from dlframework.filters.general_filters import array_length_ok
-from dlframework.augmentations.general_augmentations import identity, add_noise,
+from dlframework.augmentations.general_augmentations import identity, add_noise, \
                                                       remove_outliers, amplitude_extractor, \
                                                       subtract_gaussian_filter, offset, \
                                                       add_linear_trend
