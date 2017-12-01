@@ -12,7 +12,8 @@ from dlframework.processors.general_processors import smooth_guassian_processor,
                                                       subtract_gaussian_filter
 from dlframework.processors.audio_processors import wav_normalize
 from dlframework.keras_extensions.callbacks import ConfusionMatrix, ROCAnalysis
-from dlframework.callbacks.classification_callbacks import LcGraph, precision_per_class, recall_per_class, pred_per_class, LabelHistogram
+from dlframework.callbacks.classification_callbacks import precision_per_class, recall_per_class, pred_per_class, LabelHistogram
+from dlframework.callbacks.planet_callbacks import LcGraph
 
 ### Data Manipulation
 import pandas as pd
