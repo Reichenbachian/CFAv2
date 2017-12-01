@@ -8,7 +8,7 @@ from dlframework.retrievals.MySQL import MySQL
 from dlframework.utils import get_logger
 from dlframework.trainer.solver import train_model
 from dlframework.datasource.planet_ds import PlanetDataSource
-from dlframework.callback_examples.general_callbacks import recall_per_class, precision_per_class
+from dlframework.callback_examples.classification_callbacks import recall_per_class, precision_per_class
 from dlframework.nets.planet_nets import planet_structure_lrcn as net
 ## Other
 import logging
