@@ -12,7 +12,7 @@ from dlframework.filters.general_filters import threshold_ignore_label, threshol
 from dlframework.retrievals.MySQL import MySQL
 from dlframework.utils import get_logger
 from dlframework.trainer.solver import train_model
-from dlframework.datasource.planetdatasource import PlanetDataSource
+from dlframework.datasource.planet_ds import PlanetDataSource
 from dlframework.callback_examples.general_callbacks import recall_per_class, precision_per_class
 # Other
 from dlframework.nets.planet_nets import planet_structure_lrcn as net
