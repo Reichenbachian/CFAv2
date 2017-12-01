@@ -1,10 +1,5 @@
-import matplotlib
-matplotlib.use('Agg')
+# Config
 from config import config as cfg
-import logging
-import pandas as pd 
-from functools import partial
-
 # Controllers
 from dlframework.unwrappers.general_unwrappers import unwrapper
 from dlframework.filters.general_filters import threshold_ignore_label, threshold_accept_label
@@ -14,14 +9,18 @@ from dlframework.utils import get_logger
 from dlframework.trainer.solver import train_model
 from dlframework.datasource.planet_ds import PlanetDataSource
 from dlframework.callback_examples.general_callbacks import recall_per_class, precision_per_class
-# Other
 from dlframework.nets.planet_nets import planet_structure_lrcn as net
+## Other
+import logging
+import pandas as pd 
+from functools import partial
+import matplotlib
+matplotlib.use('Agg')
 
+
+#### Start Logger
 logger = get_logger()
 logger.setLevel(logging.INFO)
-
-
-mapped_label_list = ['planet', 'other']
 
 ds_params_val = {"local_cache_directory":cfg.local_cache_directory,
                              "batch_size":10,
@@ -87,21 +86,6 @@ print '# of entities of Training dataset :', len(train_datasource.entities)
 print '# of entities of Validation dataset :', len(validation_datasource.entities) 
 
 def train(model, cwd, logger, experiment):
-    
-    # Build list of recall metrics (func pointers)
-    # But add __name__ variable to `partial` objects, because needed by Keras
-    custom_metrics = []
-    for i, lbl_name in enumerate(mapped_label_list):
-        p = partial(recall_per_class, cls=i)
-        p.__name__ = "recall_"+lbl_name
-        custom_metrics.append(p)
-    for i, lbl_name in enumerate(mapped_label_list):
-        p = partial(precision_per_class, cls=i)
-        p.__name__ = "precision_"+lbl_name
-        custom_metrics.append(p)
-    
-    print 'len(custom_metrics)',len(custom_metrics)
-    cfg.model_compilation_args['metrics'] += custom_metrics
     train_model(model, train_datasource, validation_datasource, cfg)
     # serialize model to JSON
     model.save_model_to_json(cwd + 'models/' + experiment+".json")
