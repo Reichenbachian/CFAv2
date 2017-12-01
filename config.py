@@ -5,10 +5,11 @@ import os
 ### DlFramework
 from dlframework.filters.general_filters import array_length_ok
 from dlframework.augmentations.general_augmentations import identity, add_noise, \
-                                                      remove_outliers, amplitude_extractor, \
-                                                      subtract_gaussian_filter, offset, \
-                                                      add_linear_trend
-from dlframework.processors.general_processors import smooth_guassian_processor
+                                                      offset, add_linear_trend
+from dlframework.processors.general_processors import smooth_guassian_processor, \
+                                                      remove_outliers, \
+                                                      amplitude_extractor, \
+                                                      subtract_gaussian_filter
 from dlframework.processors.audio_processors import wav_normalize
 from dlframework.keras_extensions.callbacks import ConfusionMatrix, ROCAnalysis
 from dlframework.callbacks.classification_callbacks import LcGraph, precision_per_class, recall_per_class, pred_per_class, LabelHistogram
